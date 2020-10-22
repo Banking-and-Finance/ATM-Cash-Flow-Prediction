@@ -1,0 +1,105 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+	function reloadPage() {
+		location.reload();
+		$("#error").hide();
+	}
+</script>
+
+<style>
+	.input,
+	.image {
+		min-height: 100vh;
+	}
+
+	.bg-image {
+		background-image: url("../static/images/background-5.jpg");
+		background-size: cover;
+		background-position: center center;
+	}
+
+	#error {
+		color: #ff0033;
+	}
+	#content {
+		background-color: #ffcfdf;
+		background-image: linear-gradient(315deg, #ffcfdf 0%, #b0f3f1 74%);
+	}
+</style>
+
+<div class="container-fluid" onunload="reloadPage();">
+	<div class="row no-gutter">
+		<!-- The image half -->
+		<div class="col-md-6 d-none d-md-flex bg-image"></div>
+
+		<!-- The content half -->
+		<div class="col-md-6" id="content">
+			<div class="input d-flex align-items-center py-5">
+
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-10 col-xl-7 mx-auto">
+							<h3 class="display-4">ATM Cash Flow Prediction</h3>
+							<p class="text-muted mb-4">Forecast the withdrawal for given ATM provided the date.</p>
+							<form action="{{url_for('results')}}" method="POST">
+								<div class="form-group mb-3">
+									<label for="date" class="label-title text-muted"> Date to Forecast Cash For</label>
+								  	<input type="date" class="form-control rounded-pill border-0 shadow-sm px-4" 
+								  	name="date" id="date" min="2011-01-01" max="2015-12-31" value = "2011-01-01" required>
+								</div>
+
+								{% if error %}
+						  		<div class="form-group mb-3" id="error">
+									<p> &#10060; Invalid Date. Please Select Another One </p>
+							  	</div>  
+								{% endif %}
+								
+								<button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Get Withdrawal Forecast</button>
+
+								<div class="mt-4 text">
+								  <p class="text-muted"> List of Missing Dates </p>
+								</div>
+								<div class="text-center d-flex text">
+									<ul class="text-muted col-md-6"> 
+									  <li> 2011-10-06 </li>
+									  <li> 2011-11-12 </li>
+									  <li> 2012-08-18 </li>
+									  <li> 2012-11-18 </li>
+									  <li> 2013-05-26 </li>
+									  <li> 2013-08-15 </li>
+									  <li> 2013-12-13 </li>
+									  <li> 2013-12-14 </li>
+									  <li> 2013-12-15 </li>
+									  <li> 2013-12-16 </li>
+									  <li> 2013-12-17 </li>
+									  <li> 2013-12-18 </li>
+									</ul>
+									<ul class="text-muted col-md-6">
+									  <li> 2013-12-19 </li>
+									  <li> 2013-12-20 </li>
+									  <li> 2013-12-21 </li>
+									  <li> 2013-12-22 </li>
+									  <li> 2014-04-01 </li>
+									  <li> 2014-08-10 </li>
+									  <li> 2014-10-06 </li>
+									  <li> 2015-03-09 </li>
+									  <li> 2015-03-10 </li>
+									  <li> 2015-04-03 </li>
+									  <li> 2015-06-01 </li>
+									  <li> 2015-06-19 </li>
+									</ul>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

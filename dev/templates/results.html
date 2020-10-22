@@ -1,0 +1,84 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<style>
+	.input,
+	.image {
+		min-height: 100vh;
+	}
+
+	.bg-image {
+		background-image: url("../static/images/background-5.jpg");
+		background-size: cover;
+		background-position: center center;
+	}
+	.inputDisplay {
+		color: black;
+		background-color: #efefef;
+		border-radius: 5px;
+		opacity: 0.75;
+	}
+	td, th {
+		padding: 0;
+		font-size: 15px;
+	}
+	#backButton {
+		background-color: #dde1e3;
+		border-color: #ccc;
+	}
+	#withdrawalAmount {
+		background-color: #39d11f;
+	}
+	#content {
+		background-color: #ffcfdf;
+		background-image: linear-gradient(315deg, #ffcfdf 0%, #b0f3f1 74%);
+	}
+</style>
+
+<div class="container-fluid">
+	<div class="row no-gutter">
+		<!-- The image half -->
+		<div class="col-md-6 d-none d-md-flex bg-image"></div>
+
+
+		<!-- The content half -->
+		<div class="col-md-6 bg-light" id="content">
+			<div class="input d-flex align-items-center py-5">
+				<div class="container">
+					<div class="row">
+						<div class="pl-5 col-md-9 mx-auto">
+							<h3 class="display-4">ATM Cash Flow Prediction</h3>
+							<p class="text-muted mb-4">Forecast the withdrawal for given ATM provided the date.</p>
+							<div class="inputDisplay">
+								<div class="pl-3">
+			  						<p style="padding-left: 10px; padding-top: 10px;"> <b> Input Features for selected date </b> </p>
+			  						<table class="table">
+										{% for col in test_row %}
+											<tr>	
+				  								<th scope="row"> {{col}} </th>
+				  								<td> {{ test_row.loc[test_row.index[0], col] }}&ensp; </td>
+				  							</tr>
+										{% endfor %}
+				  					</table>
+				  				</div>
+
+			  					<div class="border-top border-success pl-3 pb-1" id="withdrawalAmount">
+			  						<p style="padding-left: 10px; padding-top: 10px;"> <b> Withdrawal Amount Predicted </b> <br>
+									<span style="font-size: 25px;"> &#x20B9;{{result}} </span> </p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<a class="btn" id="backButton" href="{{url_for('home')}}"> Back To Home </a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
